@@ -1,0 +1,64 @@
+def createGUI():
+    windowID = 'Maya GUI Template'
+    if cmds.window(windowID, exists=True):
+        cmds.deleteUI(windowID)
+    #make new window
+    cmds.window(windowID, title='Fantasy City', widthHeight=(400,300), bgc=[0.25,0.25,0.25])
+    
+    
+    #cmds.columnLayout('column',adj=True, cat=['both',10], cal='center', rs=10, h=300, w=300)
+    #form=cmds.formLayout()
+    column = cmds.rowColumnLayout('column', adj=True, cat=[(1,'both',10)], rat=[1,'both',10])
+    cmds.scrollLayout(horizontalScrollBarThickness=500,verticalScrollBarThickness=100, cr=1, bv=0, po=0, pe=0)
+    #cmds.workspaceControl('workspace')
+    #cmds.formLayout(form, edit=True, attachForm=((column, 'top', 10), (column, 'left', 10), (column, 'bottom', 10), (column, 'right', 10)) )
+    cmds.frameLayout(label='TERRAIN', font='boldLabelFont', collapsable=True)
+    cmds.rowColumnLayout(nr=1, cs=[10,10])
+    cmds.text(label='Episode')
+    cmds.textField()
+    cmds.text(label='Sequence')
+    cmds.textField()  
+    cmds.text(label='Shot')
+    cmds.textField()
+    cmds.setParent('..')
+    form=cmds.formLayout()
+    button_click = cmds.button(label='press here', al='center', w=50, h=20)
+    cmds.formLayout(form, edit=True, attachForm=((button_click, 'top', 10), (button_click, 'left', 80), (button_click, 'bottom', 10), (button_click, 'right', 80)) )
+    cmds.setParent('..')
+    
+    cmds.setParent('..')
+
+    #form = cmds.formLayout()
+    tabs = cmds.tabLayout(innerMarginWidth=2, innerMarginHeight=2, scr=False)
+    #cmds.formLayout( form, edit=True, attachForm=((tabs, 'top', 0), (tabs, 'left', 0), (tabs, 'bottom', 0), (tabs, 'right', 0)) )
+    child1 = cmds.columnLayout(cat=['both',10], rowSpacing=50)
+    cmds.button(label='one')
+    cmds.button(label='two')
+    cmds.button(label='three')
+    cmds.setParent( '..' )
+    child2 = cmds.columnLayout(cat=['both',10], rowSpacing=10)
+    cmds.button(label='three')
+    cmds.button(label='three')
+    cmds.button(label='three')
+    cmds.setParent( '..' )
+    child3 = cmds.columnLayout(cat=['both',10], rowSpacing=10)
+    cmds.button(label='three')
+    cmds.button(label='three')
+    cmds.button(label='three')
+    cmds.setParent( '..' )
+    
+    cmds.tabLayout( tabs, edit=True, tabLabel=((child1, 'Layout'), (child2, 'Anim'), (child3, 'Lighting')) )
+    cmds.setParent('..')
+    cmds.setParent('..')
+
+
+    '''
+    cmds.columnLayout(adj=True, h=300, w=300)
+    cmds.frameLayout(label='Something')
+    cmds.button(label='hello', w=20, h=20)
+    cmds.setParent('..')
+    '''
+    
+    cmds.showWindow()
+    
+createGUI()
